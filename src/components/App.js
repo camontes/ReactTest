@@ -2,13 +2,13 @@ import React from 'react';
 import {Router, Route, Switch} from 'react-router-dom'
 import history from '../history';
 import HeaderContainer from '../containers/HeaderContainer';
-import UserListPage from '../pages/Users/UserListPage';
 import UserCreatePage from '../pages/Users/UserCreatePage';
 import UserDetailPage from '../pages/Users/UserDetailPage';
 import MedicalAppointmentListPage from '../pages/MedicalAppointment/MedicalAppointmentListPage';
 import Error from '../components/Error'
 import MedicalAppointmentCreatePage from '../pages/MedicalAppointment/MedicalAppointmentCreatePage';
 import ConverterPage from '../pages/Converter/ConverterPage';
+import RequestPage from '../pages/Request/RequestPage';
 
 
 const App = () =>{
@@ -19,7 +19,7 @@ const App = () =>{
                 <div>
                     <HeaderContainer />
                     <Switch>
-                        <Route path="/users/list" exact component = {UserListPage}/>
+                    <Route path="/Request" exact component = {RequestPage}/>
                         <Route path="/conversor" exact component = {ConverterPage}/>
                         <Route path="/users/create" exact component = {UserCreatePage}/>
                         <Route path="/users/detail/:username" exact component = {UserDetailPage}/>
