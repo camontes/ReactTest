@@ -1,10 +1,10 @@
 import React from 'react'
 import ConverterContainer from '../../containers/Converter/ConverterContainer'
 
-const ConverterPage = () => {
+const ConverterPage = (props) => {
 
     return(
-        <ConverterContainer />
+        <ConverterContainer/>
     )
 }
 

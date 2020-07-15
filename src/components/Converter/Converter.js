@@ -30,7 +30,7 @@ const Converter = () => {
         if(result !== 0){
             return(
                 <>
-                    <Link to = "/Request" className = "btn btn-primary">
+                    <Link to = {`/Request/${currency}/${criptoCurrency}/${value}/${result.toFixed(7)}`} className = "btn btn-primary">
                         Generar Solicitud
                     </Link>
                 </>

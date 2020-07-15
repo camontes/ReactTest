@@ -19,7 +19,7 @@ const App = () =>{
                 <div>
                     <HeaderContainer />
                     <Switch>
-                    <Route path="/Request" exact component = {RequestPage}/>
+                    <Route path="/Request/:currency/:criptoCurrency/:value/:result" exact component = {RequestPage}/>
                         <Route path="/conversor" exact component = {ConverterPage}/>
                         <Route path="/users/create" exact component = {UserCreatePage}/>
                         <Route path="/users/detail/:username" exact component = {UserDetailPage}/>
