@@ -26,7 +26,7 @@ const ShowRequest = ({ request }) => {
                         <h4>Edad: </h4> <span className = "ml-2">{request.age}</span>
                     </div>
                     <div className="col-12 d-flex align-items-center">
-                        <h4>Fecha de nacimiento: </h4> <span>{request.date}</span>
+                        <h4>Fecha de nacimiento: </h4> <span className = "ml-2">{request.date}</span>
                     </div>
                     <div className="col-12 d-flex align-items-center">
                         <h4>Tipo de moneda: </h4> <span className = "ml-2">{request.currency}</span>
