@@ -1,5 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form';
+import './Request.css'
 
 class Request extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class Request extends React.Component {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`
         return (
             <div className={className}>
-                <label>{label}</label>
+                <label className="label-request">{label}</label>
                 <input {...input} autoComplete="off" placeholder="Ingrese un nombre" />
                 {this.renderError(meta)}
             </div>
@@ -36,7 +37,7 @@ class Request extends React.Component {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`
         return (
             <div className={className}>
-                <label>{label}</label>
+                <label className="label-request">{label}</label>
                 <input {...input} type={type} autoComplete="off" placeholder="Ingrese la edad" />
                 {this.renderError(meta)}
             </div>
@@ -46,10 +47,10 @@ class Request extends React.Component {
     renderErrorDate = () => {
         if (this.state.date === null && this.state.active) {
             return (
-                <div className = "field error">
+                <div className="field error">
                     <div className="mt-2 error-message">
                         <i className="d-inline fas fa-exclamation-circle"></i>
-                        <p className="d-inline ml-2">La fecha es Obligatoria</p>
+                        <p className="d-inline ml-2">Campo obligatorio</p>
                     </div>
                 </div>
             )
@@ -57,12 +58,12 @@ class Request extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        this.setState({active: true})
+        this.setState({ active: true })
 
-        if(this.state.date !== null){
+        if (this.state.date !== null) {
             const { currency, criptoCurrency, value, result } = this.props;
             const date = this.state.date;
-            this.props.onclickSubmitRequest({...formValues,date, currency, criptoCurrency, value, result});
+            this.props.onclickSubmitRequest({ ...formValues, date, currency, criptoCurrency, value, result });
         }
     }
     render() {
@@ -70,26 +71,38 @@ class Request extends React.Component {
 
         return (
             <>
-                <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
-                    <Field name="name" component={this.renderInputName} label="Nombre" />
-                    <Field name="age" type="number" component={this.renderInputAge} label="Edad" />
-                    <label><b>Fecha de Nacimiento</b></label>
-                   <div className = {`field ${this.state.date === null && this.state.active ? 'error' : ''}`}>
-                    <input onChange={e => this.setState({ date: e.target.value })} value={this.state.date} type="date" id="date" name="date" />
-                   </div>
-                    {this.renderErrorDate()}
-                    <label><b>Tipo de Moneda</b></label>
-                    <input type = "text" value = {this.props.currency} disabled/>
-                    <label><b>Tipo de cripto-moneda</b></label>
-                    <input type = "text" value = {this.props.criptoCurrency} disabled/>
-                    <label><b>Valor a convertir</b></label>
-                    <input type = "text" value = {this.props.value} disabled/>
-                    <label><b>Resultado conversión</b></label>
-                    <input type = "text" value = {this.props.result} disabled/>
-                    <button type="submit" className="btn btn-success mt-2" disabled={pristine || submitting}>
-                        Guardar
+                <div className="row">
+                    <div className="col-12">
+                        <h1>Generar Solicitud</h1>
+                        <hr></hr>
+                    </div>
+                </div>
+                <div className="col-12">
+                    <div className="row justify-content-center">
+                        <div className="col-8">
+                            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
+                                <Field name="name" component={this.renderInputName} label="Nombre" />
+                                <Field name="age" type="number" component={this.renderInputAge} label="Edad" />
+                                <label>Fecha de Nacimiento</label>
+                                <div className={`field ${this.state.date === null && this.state.active ? 'error' : ''}`}>
+                                    <input onChange={e => this.setState({ date: e.target.value })} value={this.state.date} type="date" id="date" name="date" />
+                                </div>
+                                {this.renderErrorDate()}
+                                <label>Tipo de Moneda</label>
+                                <input type="text" value={this.props.currency} disabled />
+                                <label className="mt-2">Tipo de cripto-moneda</label>
+                                <input type="text" value={this.props.criptoCurrency} disabled />
+                                <label className="mt-2">Valor a convertir</label>
+                                <input type="text" value={this.props.value} disabled />
+                                <label className="mt-2">Resultado conversión</label>
+                                <input type="text" value={this.props.result} disabled />
+                                <button type="submit" className="btn btn-success mt-2 mb-4" disabled={pristine || submitting}>
+                                    Guardar
                     </button>
-                </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </>
         )
     }
@@ -99,10 +112,10 @@ const validate = (formValues) => {
 
     const errors = {};
     if (!formValues.name) {
-        errors.name = 'campo obligatorio'
+        errors.name = 'Campo obligatorio'
     }
     if (!formValues.age) {
-        errors.age = 'campo obligatorio'
+        errors.age = 'Campo obligatorio'
     }
     else if (isNaN(Number(formValues.age))) {
         errors.age = 'Debes de ingresar un número'

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import CurrencyInput from 'react-currency-input';
 import { Link } from 'react-router-dom'
+import './Converter.css'
 
 const Converter = () => {
     const [currency, setCurrency] = useState("$ - Dolares");
@@ -26,11 +27,11 @@ const Converter = () => {
 
     }
 
-    const renderButton = () =>{
-        if(result !== 0){
-            return(
+    const renderButton = () => {
+        if (result !== 0) {
+            return (
                 <>
-                    <Link to = {`/Request/${currency}/${criptoCurrency}/${value}/${result.toFixed(7)}`} className = "btn btn-primary">
+                    <Link to={`/Request/${currency}/${criptoCurrency}/${value}/${result.toFixed(7)}`} className="btn btn-primary">
                         Generar Solicitud
                     </Link>
                 </>
@@ -91,7 +92,7 @@ const Converter = () => {
                     const ans = converterToCriptoCurrency(value, ethereum)
                     setResult(ans);
                 }
-                else if (criptoCurrency === "Ripple") { 
+                else if (criptoCurrency === "Ripple") {
                     const ripple = 0.001388888;
                     const ans = converterToCriptoCurrency(value, ripple)
                     setResult(ans);
@@ -113,7 +114,7 @@ const Converter = () => {
                     const ans = converterToCriptoCurrency(value, ethereum)
                     setResult(ans);
                 }
-                else if (criptoCurrency === "Ripple") { 
+                else if (criptoCurrency === "Ripple") {
                     const ripple = 6.325;
                     const ans = converterToCriptoCurrency(value, ripple)
                     setResult(ans);
@@ -135,7 +136,10 @@ const Converter = () => {
     const renderError = () => {
         if (validateValue()) {
             return (
-                <h4>Debes de ingresar un valor</h4>
+                <div className="error-message">
+                    <i className="d-inline fas fa-exclamation-circle"></i>
+                    <p className="d-inline ml-2">Debes ingresar un valor</p>
+                </div>
             )
         }
     }
@@ -149,44 +153,71 @@ const Converter = () => {
 
     const handleValue = (maskedvalue) => {
         setValue(maskedvalue);
-        if(value === "$0" || value === "€0" || value === "£0" || value === 0){
+        if (value === "$0" || value === "€0" || value === "£0" || value === 0) {
             setResult(0);
         }
     }
 
     return (
-        <div>
-            <label>
-                Seleccione una moneda:
-            <select value={currency} onChange={(e) => handleCurrency(e)}>
+        <div className="row">
+            <div className="col-12">
+                <h1>Conversor de monedas</h1>
+                <hr></hr>
+            </div>
+            <div className="col-lg-6  form-group">
+                <label>
+                    Seleccione una moneda
+                </label>
+                <select value={currency} onChange={(e) => handleCurrency(e)} className="form-control">
                     <option value="$ - Dolares">$ - Dolares</option>
                     <option value="€ - Euros">€ - Euros</option>
                     <option value="$ - Pesos">$ - Pesos</option>
                     <option value="£ - Libra Esterlina">£ - Libra Esterlina</option>
                 </select>
-            </label>
-            <label>
-                Seleccione una criptomoneda:
-            <select value={criptoCurrency} onChange={(e) => setCriptoCurrency(e.target.value)}>
+            </div>
+            <div className="col-lg-6 form-group">
+                <label>
+                    Seleccione una criptomoneda
+                </label>
+                <select value={criptoCurrency} onChange={(e) => setCriptoCurrency(e.target.value)} className="form-control">
                     <option value="Ethereum">Ethereum </option>
                     <option value="Ripple">Ripple </option>
                     <option value="Dash">Dash</option>
                     <option value="Bitcoin">Bitcoin</option>
                 </select>
-            </label>
-            <CurrencyInput
-                id="value"
-                name="value"
-                precision="0"
-                prefix={currency.substr(0, 1)}
-                value={value}
-                allowDecimals={false}
-                onChange={(maskedvalue) => handleValue(maskedvalue)}
-            />
-            {renderError()}
-            {result.toFixed(7)}
-            {renderButton()}
-            <input type="button" value="Convertir" onClick={handleConverter} />
+            </div>
+            <div className="col-lg-12">
+                <div className="row d-flex justify-content-center">
+                    <div className="col-lg-6 mt-2 form-group">
+                        <label>Valor</label>
+                        <CurrencyInput
+                            id="value"
+                            name="value"
+                            precision="0"
+                            prefix={currency.substr(0, 1)}
+                            value={value}
+                            allowDecimals={false}
+                            onChange={(maskedvalue) => handleValue(maskedvalue)}
+                            className="form-control"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="col-lg-12 d-flex justify-content-center align-items-center">
+                {renderError()}
+            </div>
+            <div className="col-lg-12 mt-3 d-flex justify-content-center align-items-center">
+                <input type="button" className="btn btn-success" value="Convertir" onClick={handleConverter} />
+            </div>
+            <div className="col-lg-12 mt-4 d-flex justify-content-center">
+                <h4>El resultado de la conversión es:</h4>
+            </div>
+            <div className="col-lg-12 mt-2 d-flex justify-content-center">
+                <span className="d-block">{result.toFixed(7)}</span>
+            </div>
+            <div className="col-lg-12 mt-4 d-flex justify-content-center">
+                {renderButton()}
+            </div>
         </div>
     )
 }

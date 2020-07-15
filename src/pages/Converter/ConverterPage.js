@@ -4,7 +4,9 @@ import ConverterContainer from '../../containers/Converter/ConverterContainer'
 const ConverterPage = (props) => {
 
     return(
-        <ConverterContainer/>
+        <div className = "container" style = {{marginTop: '30px'}}>
+            <ConverterContainer/>
+        </div>
     )
 }
 

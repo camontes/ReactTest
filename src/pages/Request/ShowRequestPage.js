@@ -4,7 +4,10 @@ import ShowRequestContainer from '../../containers/Request/ShowRequestContainer'
 const ShowRequestPage = () => {
 
     return(
-        <ShowRequestContainer />
+        <div className = "container" style = {{marginTop: '30px'}}>
+            <ShowRequestContainer />
+        </div>
+
     )
 }
 
