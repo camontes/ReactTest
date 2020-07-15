@@ -1,29 +1,11 @@
 import React from 'react'
 import Header from '../components/Header'
-import {connect} from 'react-redux'
-import {logoutUser} from '../actions/user'
 
-class HeaderContainer extends React.Component{
+const HeaderContainer = () => {
 
-    onClickLogout = () =>{
-        this.props.logoutUser();
-    }
-
-    render(){
-        return(
-            <Header
-                currentUser = {this.props.currentUser}
-                onClickLogout = {this.onClickLogout}
-            />
-        )
-    }
+    return (
+        <Header />
+    )
 }
 
-const mapStateToProps = (state) => {
-    return ({ 
-        currentUser: state.users.currentUser,
-    })
-    
-}
-
-export default connect(mapStateToProps,{logoutUser})(HeaderContainer);
+export default HeaderContainer;
