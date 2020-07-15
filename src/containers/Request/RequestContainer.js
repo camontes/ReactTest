@@ -7,7 +7,6 @@ const RequestContainer = ({ currency, criptoCurrency, value, result }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
         // returned function will be called on component unmount 
         return () => {
             dispatch(unmountRequest());

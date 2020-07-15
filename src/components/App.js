@@ -9,6 +9,7 @@ import Error from '../components/Error'
 import MedicalAppointmentCreatePage from '../pages/MedicalAppointment/MedicalAppointmentCreatePage';
 import ConverterPage from '../pages/Converter/ConverterPage';
 import RequestPage from '../pages/Request/RequestPage';
+import ShowRequestPage from '../pages/Request/ShowRequestPage';
 
 
 const App = () =>{
@@ -19,7 +20,8 @@ const App = () =>{
                 <div>
                     <HeaderContainer />
                     <Switch>
-                    <Route path="/Request/:currency/:criptoCurrency/:value/:result" exact component = {RequestPage}/>
+                        <Route path="/Request/:currency/:criptoCurrency/:value/:result" exact component = {RequestPage}/>
+                        <Route path="/showRequest" exact component = {ShowRequestPage}/>
                         <Route path="/conversor" exact component = {ConverterPage}/>
                         <Route path="/users/create" exact component = {UserCreatePage}/>
                         <Route path="/users/detail/:username" exact component = {UserDetailPage}/>
