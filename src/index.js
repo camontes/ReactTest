@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['users'] // which reducer want to store
+    whitelist: ['request'] // which reducer want to store 
   };
 const pReducer = persistReducer(persistConfig, reducers);
 

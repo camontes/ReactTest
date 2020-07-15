@@ -4,11 +4,11 @@ import {
     UNMOUNT_REQUEST
 } from './type'
 
-export const createRequest = (formValues) => ({
-    type: CREATE_REQUEST,
-    payload: formValues
-});
-
 export const unmountRequest = () => ({
     type: UNMOUNT_REQUEST
 });
+
+export const createRequest = (formValues) => dispatch => {
+    dispatch({type: CREATE_REQUEST, payload: formValues})
+    history.push("/showRequest");  
+}

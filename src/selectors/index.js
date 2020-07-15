@@ -12,4 +12,6 @@ export const getMedicalApppointment = (state, user) => {
         return medical.username == user.currentUser.username
         });
     }
-  }
+}
+
+export const getRequest = (state) => state.request.data;
