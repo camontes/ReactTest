@@ -25,7 +25,7 @@ export const store = createStore(
     composeEnhacers(applyMiddleware(reduxThunk))
     );
 
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 ReactDOM.render(
     <Provider store={store}>
         <PersistGate persistor={persistor}>
