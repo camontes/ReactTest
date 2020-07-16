@@ -2,18 +2,17 @@ import React from 'react'
 
 const ShowRequest = ({ request }) => {
 
-    console.log(request.name);
     const renderData = () => {
         if (!request) {
             return (
-                <div>
+                <div className = "render-loading">
                     Loading.....
                 </div>
             )
         }
         return (
             <>
-                <div className="row">
+                <div className="row render-show">
                     <div className="col-12">
                         <h1>Información de la Solicitud</h1>
                         <hr></hr>
