@@ -159,7 +159,7 @@ const Converter = () => {
     }
 
     return (
-        <div className="row">
+        <div className="row render-div">
             <div className="col-12">
                 <h1>Conversor de monedas</h1>
                 <hr></hr>
