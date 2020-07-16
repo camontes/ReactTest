@@ -71,7 +71,7 @@ class Request extends React.Component {
 
         return (
             <>
-                <div className="row">
+                <div className="row render-request">
                     <div className="col-12">
                         <h1>Generar Solicitud</h1>
                         <hr></hr>
